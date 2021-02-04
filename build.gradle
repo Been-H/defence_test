@@ -49,6 +49,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib"
 
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
+    implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.4.10"
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
