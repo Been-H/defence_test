@@ -10,6 +10,8 @@ enum class DrivetrainMode {
     OPEN_LOOP,
 }
 
+class DefaultDrive
+
 object Drivetrain : SubsystemBase() {
 
     val rightSpark1 = Spark(0)
@@ -29,6 +31,15 @@ object Drivetrain : SubsystemBase() {
         leftSpark2.set(left)
         rightSpark1.set(right)
         rightSpark2.set(right)
+    }
+
+    fun getPercentages() {
+        val right1 = rightSpark1.get()
+        val right2 = rightSpark2.get()
+        val left1 = leftSpark1.get()
+        val left2 = leftSpark2.get()
+
+        val percentages = arrayOf<Double>()
     }
 
     // Something about DefaultDrive down here that uses PID controllers or something but it like leads to another file or something it never ends
