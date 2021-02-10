@@ -10,8 +10,6 @@ enum class DrivetrainMode {
     OPEN_LOOP,
 }
 
-class DefaultDrive
-
 object Drivetrain : SubsystemBase() {
 
     val rightSpark1 = Spark(0)
