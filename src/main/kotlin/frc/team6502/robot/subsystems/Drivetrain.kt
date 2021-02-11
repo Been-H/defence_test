@@ -2,6 +2,7 @@ package frc.team6502.robot.subsystems
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import edu.wpi.first.wpilibj2.command.PIDCommand
 import edu.wpi.first.wpilibj.Spark
+import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj.geometry.Rotation2d
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry
@@ -16,10 +17,7 @@ enum class DrivetrainMode {
 
 object Drivetrain : SubsystemBase() {
 
-    val kinematics = DifferentialDriveKinematics(Constants.DRIVE_TRACK_WIDTH.meters)
-
-    val odometry = DifferentialDriveOdometry(Rotation2d())
-
+    val differentialDrive = DifferentialDrive()
 
     val frontRightSpark = Spark(Constants.FRONT_RIGHT_SPARK_PORT)
     val backRightSpark = Spark(Constants.BACK_RIGHT_SPARK_PORT)
