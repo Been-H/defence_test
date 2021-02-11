@@ -2,7 +2,11 @@ package frc.team6502.robot.subsystems
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import edu.wpi.first.wpilibj2.command.PIDCommand
 import edu.wpi.first.wpilibj.Spark
+import edu.wpi.first.wpilibj.geometry.Rotation2d
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry
 import edu.wpi.first.wpilibj2.command.Command
+import frc.team6502.robot.Constants
 import java.lang.Compiler.command
 
 enum class DrivetrainMode {
@@ -12,10 +16,15 @@ enum class DrivetrainMode {
 
 object Drivetrain : SubsystemBase() {
 
-    val rightSpark1 = Spark(0)
-    val rightSpark2 = Spark(1)
-    val leftSpark1 = Spark(2)
-    val leftSpark2 = Spark(3)
+    val kinematics = DifferentialDriveKinematics(Constants.DRIVE_TRACK_WIDTH.meters)
+
+    val odometry = DifferentialDriveOdometry(Rotation2d())
+
+
+    val frontRightSpark = Spark(Constants.FRONT_RIGHT_SPARK_PORT)
+    val backRightSpark = Spark(Constants.BACK_RIGHT_SPARK_PORT)
+    val frontLeftSpark = Spark(Constants.FRONT_LEFT_SPARK_PORT)
+    val backLeftSpark = Spark(Constants.BACK_LEFT_SPARK_PORT)
 
     fun set(left : Double, right : Double, mode : DrivetrainMode) {
         when(mode) {
@@ -25,19 +34,17 @@ object Drivetrain : SubsystemBase() {
     }
 
     fun setPercentages(left : Double, right : Double) {
-        leftSpark1.set(left)
-        leftSpark2.set(left)
-        rightSpark1.set(right)
-        rightSpark2.set(right)
+        frontLeftSpark.set(left)
+        backLeftSpark.set(left)
+        frontRightSpark.set(right)
+        backRightSpark.set(right)
     }
 
-    fun getPercentages() {
-        val right1 = rightSpark1.get()
-        val right2 = rightSpark2.get()
-        val left1 = leftSpark1.get()
-        val left2 = leftSpark2.get()
-
-        val percentages = arrayOf<Double>()
+    fun getPercentages() : Array<Double> {
+        val right1 : Double = frontRightSpark.get()
+        val left1 : Double = frontLeftSpark.get()
+        val percentages = arrayOf<Double>(right1, left1)
+        return percentages
     }
 
     // Something about DefaultDrive down here that uses PID controllers or something but it like leads to another file or something it never ends
