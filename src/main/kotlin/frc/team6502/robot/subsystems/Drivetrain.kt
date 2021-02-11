@@ -17,12 +17,15 @@ enum class DrivetrainMode {
 
 object Drivetrain : SubsystemBase() {
 
-    val differentialDrive = DifferentialDrive()
-
     val frontRightSpark = Spark(Constants.FRONT_RIGHT_SPARK_PORT)
     val backRightSpark = Spark(Constants.BACK_RIGHT_SPARK_PORT)
     val frontLeftSpark = Spark(Constants.FRONT_LEFT_SPARK_PORT)
     val backLeftSpark = Spark(Constants.BACK_LEFT_SPARK_PORT)
+
+    val motorLeft = SpeedControllerGroup(frontLeftSpark, backLeftSpark)
+    val motorRight = SpeedControllerGroup(frontRightSpark, backRightSpark)
+
+    val differentialDrive = DifferentialDrive(motorLeft, motorRight)
 
     fun set(left : Double, right : Double, mode : DrivetrainMode) {
         when(mode) {
