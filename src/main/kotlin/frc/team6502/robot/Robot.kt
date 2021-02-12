@@ -5,6 +5,7 @@ import edu.wpi.first.hal.HAL
 import edu.wpi.first.hal.sim.DriverStationSim
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj2.command.CommandScheduler
+import frc.team6502.robot.commands.DefaultDrive
 import frc.team6502.robot.subsystems.Drivetrain
 
 /**
@@ -18,6 +19,8 @@ class Robot : TimedRobot() {
 
         // initialize RobotContainer and by extension subsystems
         RobotContainer
+
+        Drivetrain
     }
 
     override fun robotPeriodic() {

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry
 import edu.wpi.first.wpilibj2.command.Command
 import frc.team6502.robot.Constants
+import frc.team6502.robot.commands.DefaultDrive
 import java.lang.Compiler.command
 
 enum class DrivetrainMode {
@@ -51,6 +52,8 @@ object Drivetrain : SubsystemBase() {
     }
 
     // Something about DefaultDrive down here that uses PID controllers or something but it like leads to another file or something it never ends
-    fun initDefaultCommand() {}
+    fun initDefaultCommand() {
+        defaultCommand = DefaultDrive()
+    }
 
 }
