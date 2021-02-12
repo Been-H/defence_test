@@ -20,7 +20,6 @@ class Robot : TimedRobot() {
         // initialize RobotContainer and by extension subsystems
         RobotContainer
 
-        Drivetrain
     }
 
     override fun robotPeriodic() {

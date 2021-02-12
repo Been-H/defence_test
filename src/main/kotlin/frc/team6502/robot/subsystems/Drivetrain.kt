@@ -30,27 +30,6 @@ object Drivetrain : SubsystemBase() {
 
     val differentialDrive = DifferentialDrive(motorLeft, motorRight)
 
-    fun set(left : Double, right : Double, mode : DrivetrainMode) {
-        when(mode) {
-            DrivetrainMode.DISABLED -> setPercentages(0.0, 0.0)
-            DrivetrainMode.OPEN_LOOP -> setPercentages(left, right)
-        }
-    }
-
-    fun setPercentages(left : Double, right : Double) {
-        frontLeftSpark.set(left)
-        backLeftSpark.set(left)
-        frontRightSpark.set(right)
-        backRightSpark.set(right)
-    }
-
-    fun getPercentages() : Array<Double> {
-        val right1 : Double = frontRightSpark.get()
-        val left1 : Double = frontLeftSpark.get()
-        val percentages = arrayOf<Double>(right1, left1)
-        return percentages
-    }
-
     // Something about DefaultDrive down here that uses PID controllers or something but it like leads to another file or something it never ends
     fun initDefaultCommand() {
         defaultCommand = DefaultDrive()
